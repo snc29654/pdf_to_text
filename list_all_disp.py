@@ -70,6 +70,9 @@ class image_gui():
         label4.pack(side="top")
         label4.place(x=200, y=100) 
 
+        label5 = tkinter.Label(root_main, text="PDFページ", fg="red", bg="white", font=font1)
+        label5.pack(side="top")
+        label5.place(x=200, y=120) 
 
 
 
@@ -84,7 +87,7 @@ class image_gui():
     def button1_clicked(self):  
 
         self.font_size=combo1.get()
-        #self.sizerate = txt4.get();
+        self.pdf_page=txt4.get()
 
         ini_dir = 'C:'
         ret = tkinter.filedialog.askdirectory(initialdir=ini_dir, title='file dialog test', mustexist = True)
@@ -99,6 +102,7 @@ class image_gui():
     def button3_clicked(self):  
 
         self.font_size=combo1.get()
+        self.pdf_page=txt4.get()
         
         #self.sizerate = txt4.get();
 
@@ -170,6 +174,7 @@ class image_gui():
 
 
         self.font_size=combo1.get()
+        self.pdf_page=txt4.get()
 
  
 
@@ -193,7 +198,7 @@ class image_gui():
         # pdf2txt.py の呼び出し
         with open(n, "rb") as f:
             reader = PyPDF2.PdfFileReader(f)
-            page = reader.getPage(0)
+            page = reader.getPage(int(self.pdf_page))
             print(page.extractText())
             self.text_box.insert(END, page.extractText())
 
@@ -219,9 +224,9 @@ root_main.title("pdf　text変換")
 root_main.geometry("850x600") 
 
 
-#txt4 = tkinter.Entry(width=10)
-#txt4.place(x=330, y=100)
-#txt4.insert(tkinter.END,"10")
+txt4 = tkinter.Entry(width=10)
+txt4.place(x=50, y=120)
+txt4.insert(tkinter.END,"10")
 
 
 combo1 = ttk.Combobox(root_main, state='readonly')
