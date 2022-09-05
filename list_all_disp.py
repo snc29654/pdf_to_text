@@ -131,9 +131,11 @@ class image_gui():
         n = event.widget.get(index)
         self.n_old = n
         value.set(n)
-        self.select_one_image(n)
+        #self.select_one_image(n)
         print("get_index=" + n)
 
+        thread1 = threading.Thread(target=self.select_one_image,args=(n,))
+        thread1.start()
 
     def list_disp(self):
     
@@ -209,17 +211,7 @@ class image_gui():
         self.sub.destroy()
         
         
-        
-
-
-
-
-    def sizedown(self):
-        self.sizerate = self.sizerate - 1
-        self.select_one_image(self.n_old)
-
-
-
+    
 
 root_main= tkinter.Tk()  
 c=image_gui(root_main)  
