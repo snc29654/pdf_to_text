@@ -226,7 +226,7 @@ root_main.geometry("850x600")
 
 txt4 = tkinter.Entry(width=10)
 txt4.place(x=50, y=120)
-txt4.insert(tkinter.END,"10")
+txt4.insert(tkinter.END,"0")
 
 
 combo1 = ttk.Combobox(root_main, state='readonly')
