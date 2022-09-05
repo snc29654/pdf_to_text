@@ -37,7 +37,6 @@ import PyPDF2
 
 #最初の画面のクラス
 class image_gui():  
-    encode_type="utf-8"
     imgs = []
     def __init__(self, main):  
         self.index_before = 0
@@ -54,9 +53,13 @@ class image_gui():
         button3.grid(row=0, column=1)  
         button3.place(x=100, y=30) 
 
-        button8= Button(root_main, text=u'リスト削除', command=self.button8_clicked)  
+        button8= Button(root_main, text=u'リスト表示削除', command=self.button8_clicked)  
         button8.grid(row=0, column=1)  
         button8.place(x=250, y=5) 
+
+        button9= Button(root_main, text=u'テキスト表示削除', command=self.button9_clicked)  
+        button9.grid(row=0, column=1)  
+        button9.place(x=250, y=30) 
 
 
 
@@ -66,10 +69,6 @@ class image_gui():
         label4 = tkinter.Label(root_main, text="Fontサイズ", fg="red", bg="white", font=font1)
         label4.pack(side="top")
         label4.place(x=200, y=100) 
-
-        label5 = tkinter.Label(root_main, text="エンコード", fg="red", bg="white", font=font1)
-        label5.pack(side="top")
-        label5.place(x=200, y=60) 
 
 
 
@@ -83,9 +82,7 @@ class image_gui():
             pass
 
     def button1_clicked(self):  
-        global encode_type
 
-        encode_type=combo.get()
         self.font_size=combo1.get()
         #self.sizerate = txt4.get();
 
@@ -100,9 +97,7 @@ class image_gui():
         #self.quit()
 
     def button3_clicked(self):  
-        global encode_type
 
-        encode_type=combo.get()
         self.font_size=combo1.get()
         
         #self.sizerate = txt4.get();
@@ -117,6 +112,7 @@ class image_gui():
 
     def button8_clicked(self):  
         self.listbox.destroy()
+    def button9_clicked(self):  
         self.text_box.destroy()
 
     def quit(self):
@@ -171,6 +167,7 @@ class image_gui():
         self.txt2.place(x=20, y=500)
 
 
+        self.font_size=combo1.get()
 
  
 
@@ -189,7 +186,6 @@ class image_gui():
             b = f.read()  # ファイルの内容を全て読み込む
 
         enc = detect(b)
-        self.encode_type=enc['encoding']
     
 
         # pdf2txt.py の呼び出し
@@ -227,7 +223,7 @@ class image_gui():
 
 root_main= tkinter.Tk()  
 c=image_gui(root_main)  
-root_main.title("rootです")  
+root_main.title("pdf　text変換")  
 root_main.geometry("850x600") 
 
 
@@ -235,14 +231,6 @@ root_main.geometry("850x600")
 #txt4.place(x=330, y=100)
 #txt4.insert(tkinter.END,"10")
 
-combo = ttk.Combobox(root_main, state='readonly')
-# リストの値を設定
-combo["values"] = ("utf-8","shift_jis","euc_jp")
-# デフォルトの値を食費(index=0)に設定
-combo.current(0)
-# コンボボックスの配置
-combo.place(x=50, y=60)
-#combo.pack()
 
 combo1 = ttk.Combobox(root_main, state='readonly')
 # リストの値を設定
