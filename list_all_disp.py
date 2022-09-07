@@ -44,6 +44,8 @@ class image_gui():
         self.n_old=[]
         self.angle=0
         self.filenames =[]
+        self.pdf_page=0
+        
         
         button1 = Button(root_main, text=u'フォルダー選択', command=self.button1_clicked)  
         button1.grid(row=0, column=1)  
@@ -74,6 +76,20 @@ class image_gui():
         label5.pack(side="top")
         label5.place(x=200, y=120) 
 
+        self.txt4 = tkinter.Entry(width=10)
+        self.txt4.place(x=50, y=120)
+        self.txt4.insert(tkinter.END,self.pdf_page)
+
+
+        self.combo1 = ttk.Combobox(root_main, state='readonly')
+        # リストの値を設定
+        self.combo1["values"] = (8,9,10,11,12,14,16,18,20)
+        # デフォルトの値を食費(index=0)に設定
+        self.combo1.current(0)
+        # コンボボックスの配置
+        self.combo1.place(x=50, y=100)
+        #combo1.pack()
+
 
 
     def key_handler(self,e):
@@ -86,8 +102,8 @@ class image_gui():
 
     def button1_clicked(self):  
 
-        self.font_size=combo1.get()
-        self.pdf_page=txt4.get()
+        self.font_size=self.combo1.get()
+        self.pdf_page=self.txt4.get()
 
         ini_dir = 'C:'
         ret = tkinter.filedialog.askdirectory(initialdir=ini_dir, title='file dialog test', mustexist = True)
@@ -101,8 +117,8 @@ class image_gui():
 
     def button3_clicked(self):  
 
-        self.font_size=combo1.get()
-        self.pdf_page=txt4.get()
+        self.font_size=self.combo1.get()
+        self.pdf_page=self.txt4.get()
         
         #self.sizerate = txt4.get();
 
@@ -173,8 +189,8 @@ class image_gui():
         self.txt2.place(x=20, y=500)
 
 
-        self.font_size=combo1.get()
-        self.pdf_page=txt4.get()
+        self.font_size=self.combo1.get()
+        self.pdf_page=self.txt4.get()
 
  
 
@@ -226,20 +242,6 @@ c=image_gui(root_main)
 root_main.title("pdf　text変換")  
 root_main.geometry("850x600") 
 
-
-txt4 = tkinter.Entry(width=10)
-txt4.place(x=50, y=120)
-txt4.insert(tkinter.END,"0")
-
-
-combo1 = ttk.Combobox(root_main, state='readonly')
-# リストの値を設定
-combo1["values"] = (8,9,10,11,12,14,16,18,20)
-# デフォルトの値を食費(index=0)に設定
-combo1.current(0)
-# コンボボックスの配置
-combo1.place(x=50, y=100)
-#combo1.pack()
 
 
 # ボタンの作成（コールバックコマンドには、コンボボックスの値を取得しprintする処理を定義）
