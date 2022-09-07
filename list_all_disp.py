@@ -55,6 +55,11 @@ class image_gui():
         button3.grid(row=0, column=1)  
         button3.place(x=100, y=30) 
 
+        button4= Button(root_main, text=u'次ページ', command=self.button4_clicked)  
+        button4.grid(row=0, column=1)  
+        button4.place(x=100, y=55) 
+
+
         button8= Button(root_main, text=u'リスト表示削除', command=self.button8_clicked)  
         button8.grid(row=0, column=1)  
         button8.place(x=250, y=5) 
@@ -130,6 +135,20 @@ class image_gui():
         self.list_disp()
         #self.quit()
 
+    def button4_clicked(self):  
+        value = tkinter.StringVar()
+        
+        print("*************")
+        print(self.n)
+        value.set(self.n)
+
+        self.pdf_page=int(self.pdf_page) + 1
+        self.txt4.delete(0, tkinter.END)
+        self.txt4.insert(tkinter.END,int(self.pdf_page))
+
+        thread1 = threading.Thread(target=self.select_one_image,args=(self.n,))
+        thread1.start()
+
     def button8_clicked(self):  
         self.listbox.destroy()
     def button9_clicked(self):  
@@ -142,6 +161,12 @@ class image_gui():
     def get_index(self,event):
 
         value = tkinter.StringVar()
+
+        self.txt4 = tkinter.Entry(width=10)
+        self.txt4.place(x=50, y=120)
+        self.pdf_page=0
+        self.txt4.insert(tkinter.END,self.pdf_page)
+
  
         index = event.widget.curselection()
         if (self.index_before==index):
@@ -149,6 +174,7 @@ class image_gui():
         self.index_before=index
 
         n = event.widget.get(index)
+        self.n=n
         self.n_old = n
         value.set(n)
         #self.select_one_image(n)
@@ -190,7 +216,7 @@ class image_gui():
 
 
         self.font_size=self.combo1.get()
-        self.pdf_page=self.txt4.get()
+        #self.pdf_page=self.txt4.get()
 
  
 
