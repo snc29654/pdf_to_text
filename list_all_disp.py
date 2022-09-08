@@ -259,7 +259,7 @@ class image_gui():
     
         try:
         # pdf2txt.py の呼び出し
-            pdf_page=0
+            pdf_page=self.pdf_page
             while(1):
                 with open(n, "rb") as f:
                     reader = PyPDF2.PdfFileReader(f)
