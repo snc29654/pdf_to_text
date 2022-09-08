@@ -259,11 +259,14 @@ class image_gui():
     
         try:
         # pdf2txt.py の呼び出し
-            with open(n, "rb") as f:
-                reader = PyPDF2.PdfFileReader(f)
-                page = reader.getPage(int(self.pdf_page))
-                print(page.extractText())
-                self.text_box.insert(END, page.extractText())
+            pdf_page=0
+            while(1):
+                with open(n, "rb") as f:
+                    reader = PyPDF2.PdfFileReader(f)
+                    page = reader.getPage(int(pdf_page))
+                    print(page.extractText())
+                    self.text_box.insert(END, page.extractText())
+                    pdf_page=pdf_page+1
 
         except:
                 self.text_box.insert(END, "ページがありません")
