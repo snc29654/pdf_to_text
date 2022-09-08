@@ -49,15 +49,19 @@ class image_gui():
         
         button1 = Button(root_main, text=u'フォルダー選択', command=self.button1_clicked)  
         button1.grid(row=0, column=1)  
-        button1.place(x=100, y=5) 
+        button1.place(x=50, y=5) 
 
         button3= Button(root_main, text=u'ファイル   選択', command=self.button3_clicked)  
         button3.grid(row=0, column=1)  
-        button3.place(x=100, y=30) 
+        button3.place(x=50, y=30) 
 
         button4= Button(root_main, text=u'次ページ', command=self.button4_clicked)  
         button4.grid(row=0, column=1)  
         button4.place(x=100, y=55) 
+
+        button5= Button(root_main, text=u'前ページ', command=self.button5_clicked)  
+        button5.grid(row=0, column=1)  
+        button5.place(x=50, y=55) 
 
 
         button8= Button(root_main, text=u'リスト表示削除', command=self.button8_clicked)  
@@ -148,6 +152,23 @@ class image_gui():
 
         thread1 = threading.Thread(target=self.select_one_image,args=(self.n,))
         thread1.start()
+
+    def button5_clicked(self):  
+        value = tkinter.StringVar()
+        
+        print("*************")
+        print(self.n)
+        value.set(self.n)
+        if(self.pdf_page > 0):
+            self.pdf_page=int(self.pdf_page) - 1
+
+        self.txt4.delete(0, tkinter.END)
+        self.txt4.insert(tkinter.END,int(self.pdf_page))
+
+        thread1 = threading.Thread(target=self.select_one_image,args=(self.n,))
+        thread1.start()
+
+
 
     def button8_clicked(self):  
         self.listbox.destroy()
