@@ -223,34 +223,28 @@ class image_gui():
     def select_one_image(self,n):
 
 
-        #root_one = tkinter.Tk()
-        #root_one.title("root_oneです")  
-        #root_one.geometry("1x1")
-        
-        #frame2 = ttk.Frame(root_one, padding=10)
-        #frame2.grid()
-
-
 
         self.txt2 = tk.Entry(width=50)
         self.txt2.place(x=20, y=500)
 
 
         self.font_size=self.combo1.get()
-        #self.pdf_page=self.txt4.get()
-
- 
 
         self.text_box = tk.Text(bg="#000", fg="#fff", insertbackground="#fff",
-                   height=40)
+                   width=110,height=20)
         self.text_box.pack()
-        self.text_box.place(x=20, y=200)
+        self.text_box.place(x=20, y=250)
         fontExample = tkFont.Font(family="Courier", size=self.font_size, weight="normal", slant="roman")
 
         self.text_box.configure(font=fontExample)
 
-        #f = open(n, encoding="utf-8")
-        #text_data = f.read()
+        scroll = tkinter.Scrollbar(frame1, orient=tkinter.VERTICAL, command=self.text_box.yview)
+        scroll.pack(side=tkinter.LEFT, fill="y")
+
+        #動きをスクロールバーに反映
+        self.text_box["yscrollcommand"] = scroll.set
+
+
 
         with open(n, 'rb') as f:  # バイナリファイルとしてファイルをオープン
             b = f.read()  # ファイルの内容を全て読み込む
@@ -271,14 +265,6 @@ class image_gui():
         except:
                 self.text_box.insert(END, "ページがありません")
             
-            
-
-
-        #root_one.after(10, lambda: root_one.destroy())
-        #root_one.mainloop()
-
-
- 
 
     def testend(self):
 
@@ -288,28 +274,12 @@ class image_gui():
     
 
 root_main= tkinter.Tk()  
+frame1 = tkinter.Frame()
+#frame1.pack()
 c=image_gui(root_main)  
 root_main.title("pdf　text変換")  
 root_main.geometry("850x600") 
 
 
-
-# ボタンの作成（コールバックコマンドには、コンボボックスの値を取得しprintする処理を定義）
-#button = tk.Button(text="表示",command=lambda:print(combo.get()))
-
-#button10 = Button(root_main, text=u'エンコードセット', command=button10_clicked)  
-#button10.place(x=50, y=50) 
-
-
-
-# ボタンの配置
-#button.pack()
-
-
 root_main.mainloop()
 
-
-#thread1 = threading.Thread(target=c.view_image)
-#thread1.start()
-
-    
