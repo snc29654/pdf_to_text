@@ -66,11 +66,11 @@ class image_gui():
 
         button8= Button(root_main, text=u'リスト表示削除', command=self.button8_clicked)  
         button8.grid(row=0, column=1)  
-        button8.place(x=250, y=5) 
+        button8.place(x=200, y=5) 
 
         button9= Button(root_main, text=u'テキスト表示削除', command=self.button9_clicked)  
         button9.grid(row=0, column=1)  
-        button9.place(x=250, y=30) 
+        button9.place(x=200, y=30) 
 
 
 
