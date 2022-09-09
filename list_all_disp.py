@@ -223,12 +223,12 @@ class image_gui():
     def select_one_image(self,n):
 
 
-        root_one = tkinter.Tk()
-        root_one.title("root_oneです")  
-        root_one.geometry("1x1")
+        #root_one = tkinter.Tk()
+        #root_one.title("root_oneです")  
+        #root_one.geometry("1x1")
         
-        frame2 = ttk.Frame(root_one, padding=10)
-        frame2.grid()
+        #frame2 = ttk.Frame(root_one, padding=10)
+        #frame2.grid()
 
 
 
@@ -274,8 +274,8 @@ class image_gui():
             
 
 
-        root_one.after(10, lambda: root_one.destroy())
-        root_one.mainloop()
+        #root_one.after(10, lambda: root_one.destroy())
+        #root_one.mainloop()
 
 
  
