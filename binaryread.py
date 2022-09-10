@@ -61,13 +61,13 @@ class image_gui():
         button3.grid(row=0, column=1)  
         button3.place(x=50, y=30) 
 
-        button4= Button(root_main, text=u'次ページ', command=self.button4_clicked)  
-        button4.grid(row=0, column=1)  
-        button4.place(x=100, y=55) 
+        #button4= Button(root_main, text=u'次ページ', command=self.button4_clicked)  
+        #button4.grid(row=0, column=1)  
+        #button4.place(x=100, y=55) 
 
-        button5= Button(root_main, text=u'前ページ', command=self.button5_clicked)  
-        button5.grid(row=0, column=1)  
-        button5.place(x=50, y=55) 
+        #button5= Button(root_main, text=u'前ページ', command=self.button5_clicked)  
+        #button5.grid(row=0, column=1)  
+        #button5.place(x=50, y=55) 
 
 
         button8= Button(root_main, text=u'リスト表示削除', command=self.button8_clicked)  
@@ -87,9 +87,9 @@ class image_gui():
         label4.pack(side="top")
         label4.place(x=200, y=100) 
 
-        label5 = tkinter.Label(root_main, text="PDFページ", fg="red", bg="white", font=font1)
-        label5.pack(side="top")
-        label5.place(x=200, y=120) 
+        #label5 = tkinter.Label(root_main, text="PDFページ", fg="red", bg="white", font=font1)
+        #label5.pack(side="top")
+        #label5.place(x=200, y=120) 
 
         self.txt4 = tkinter.Entry(width=10)
         self.txt4.place(x=50, y=120)
