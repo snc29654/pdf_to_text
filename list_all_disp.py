@@ -246,10 +246,6 @@ class image_gui():
 
 
 
-        with open(n, 'rb') as f:  # バイナリファイルとしてファイルをオープン
-            b = f.read()  # ファイルの内容を全て読み込む
-
-        enc = detect(b)
     
         try:
         # pdf2txt.py の呼び出し
