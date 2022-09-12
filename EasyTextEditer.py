@@ -70,7 +70,7 @@ class image_gui():
 
         fTyp = [('', '*')] 
         iDir = os.path.abspath(os.path.dirname(__file__)) 
-        self.filenames = tkFileDialog.askopenfilenames(filetypes= [("PDF", "pdf")], initialdir=iDir)
+        self.filenames = tkFileDialog.askopenfilenames(filetypes= [("PDF", ".pdf")], initialdir=iDir)
         print(self.filenames)
         
         root = Tk()
