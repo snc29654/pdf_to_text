@@ -79,51 +79,54 @@ class image_gui():
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
 
-# Frame
-        frame1 = ttk.Frame(root, padding=10)
-        frame1.rowconfigure(1, weight=1)
-        frame1.columnconfigure(0, weight=1)
-        frame1.grid(sticky=(N, W, S, E))
+        # Frame
+        self.frame1 = ttk.Frame(root, padding=10)
+        self.frame1.rowconfigure(1, weight=1)
+        self.frame1.columnconfigure(0, weight=1)
+        self.frame1.grid(sticky=(N, W, S, E))
+        
+        self.convert_pdf()
         
         
+    def convert_pdf(self):  
 
         for name in self.filenames:
     
 
             pdf = open(name, 'rb')
 
-        # テキスト抽出のための準備
+            # テキスト抽出のための準備
             outpdf = StringIO()
             rmgr = PDFResourceManager()
             lprms = LAParams()
             device = TextConverter(rmgr, outpdf, laparams=lprms)
             iprtr = PDFPageInterpreter(rmgr, device)
 
-        # ページを読み込む
+            # ページを読み込む
 
 
 
 
-# Text
+            # Text
             f = Font(family='Helvetica', size=16)
             v1 = StringVar()
-            txt = Text(frame1, height=30, width=120)
+            txt = Text(self.frame1, height=30, width=120)
             txt.configure(font=f)
             txt.grid(row=1, column=0, sticky=(N, W, S, E))
 
             for page in PDFPage.get_pages(pdf):
                 iprtr.process_page(page)
 
-        # テキストを抽出して出力
+                # テキストを抽出して出力
                 text = outpdf.getvalue()
                 #print(text)
                 txt.insert(END, text)
 
 
 
-# Scrollbar
+            # Scrollbar
             scrollbar = ttk.Scrollbar(
-                frame1,
+                self.frame1,
                 orient=VERTICAL,
                 command=txt.yview)
             txt['yscrollcommand'] = scrollbar.set
