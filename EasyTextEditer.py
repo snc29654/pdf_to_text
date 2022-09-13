@@ -92,9 +92,7 @@ class image_gui():
         button4.place(x=0, y=0) 
 
 
-
         
-        self.textwrite()
     def convert_pdf(self):  
 
         for name in self.filenames:
