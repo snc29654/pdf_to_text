@@ -53,11 +53,14 @@ class image_gui():
         self.filenames =[]
         
 
-        button3= Button(root_main, text=u'ファイル   選択', command=self.button3_clicked)  
+        button3= Button(root_main, text=u'PDFファイル選択', command=self.button3_clicked)  
         button3.grid(row=0, column=1)  
         button3.place(x=100, y=30) 
 
 
+        button4= Button(root_main, text=u'終了', command=self.quit)  
+        button4.grid(row=0, column=1)  
+        button4.place(x=100, y=60) 
 
 
 
@@ -163,7 +166,7 @@ class image_gui():
 
 root_main= tkinter.Tk()  
 c=image_gui(root_main)  
-root_main.title("rootです")  
+root_main.title("PDF TEXT 変換")  
 root_main.geometry("600x300") 
 
 
