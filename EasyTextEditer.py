@@ -86,8 +86,15 @@ class image_gui():
         self.frame1.grid(sticky=(N, W, S, E))
         
         self.convert_pdf()
+
+        button4= Button(self.frame1, text=u'テキストファイル作成', command=self.textwrite)  
+        button4.grid(row=0, column=1)  
+        button4.place(x=0, y=0) 
+
+
+
         
-        
+        self.textwrite()
     def convert_pdf(self):  
 
         for name in self.filenames:
@@ -110,9 +117,9 @@ class image_gui():
             # Text
             f = Font(family='Helvetica', size=16)
             v1 = StringVar()
-            txt = Text(self.frame1, height=30, width=120)
-            txt.configure(font=f)
-            txt.grid(row=1, column=0, sticky=(N, W, S, E))
+            self.txt = Text(self.frame1, height=30, width=120)
+            self.txt.configure(font=f)
+            self.txt.grid(row=1, column=0, sticky=(N, W, S, E))
 
             for page in PDFPage.get_pages(pdf):
                 iprtr.process_page(page)
@@ -120,7 +127,7 @@ class image_gui():
                 # テキストを抽出して出力
                 text = outpdf.getvalue()
                 #print(text)
-                txt.insert(END, text)
+                self.txt.insert(END, text)
 
 
 
@@ -128,8 +135,8 @@ class image_gui():
             scrollbar = ttk.Scrollbar(
                 self.frame1,
                 orient=VERTICAL,
-                command=txt.yview)
-            txt['yscrollcommand'] = scrollbar.set
+                command=self.txt.yview)
+            self.txt['yscrollcommand'] = scrollbar.set
             scrollbar.grid(row=1, column=1, sticky=(N, S))
 
     def quit(self):
@@ -140,13 +147,14 @@ class image_gui():
 
 
     def textwrite(self):
-        get_data=self.text_box.get("1.0", "end")
+        get_data=self.txt.get("1.0", "end")
         print(get_data)
         
         for name in self.filenames:
 
-            out_file=name
-            fout_utf = open(out_file, 'w', encoding=self.encode_type)
+            out_file=name.replace('.pdf', '.txt')
+            
+            fout_utf = open(out_file, 'w', encoding="utf-8")
  
             for row in get_data:
                 fout_utf.write(row)
